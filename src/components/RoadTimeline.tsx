@@ -56,12 +56,34 @@ const milestones: Milestone[] = [
 
 const RoadTimeline = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
+  const roadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!timelineRef.current) return;
 
     const milestoneCards = timelineRef.current.querySelectorAll(".milestone-card");
     const dots = timelineRef.current.querySelectorAll(".timeline-dot");
+
+    // Animate road background fade in
+    if (roadRef.current) {
+      gsap.fromTo(
+        roadRef.current,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 0.4,
+          duration: 1.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: milestoneCards[0],
+            start: "top 80%",
+            end: "top 40%",
+            scrub: 1,
+          },
+        }
+      );
+    }
 
     milestoneCards.forEach((card, index) => {
       const isLeft = index % 2 === 0;
@@ -119,6 +141,9 @@ const RoadTimeline = () => {
       {/* Gradient Fade at Top */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/50 to-transparent z-20 pointer-events-none" />
       
+      {/* Gradient Fade at Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/50 to-transparent z-20 pointer-events-none" />
+      
       {/* Section Title */}
       <div className="container mx-auto px-4 mb-16 max-w-7xl relative z-10">
         <h2 className="text-5xl md:text-7xl font-black text-left mb-4" style={{ fontFamily: 'Impact, Arial Black, sans-serif' }}>
@@ -127,16 +152,17 @@ const RoadTimeline = () => {
         <p className="text-left text-muted-foreground text-lg">Two decades of adventure on two wheels</p>
       </div>
 
-      {/* Road Background - Starts lower, appears with first milestone */}
+      {/* Road Background - Animated fade in, seamlessly connected */}
       <div 
-        className="absolute left-1/2 -translate-x-1/2 w-[200px] pointer-events-none opacity-40"
+        ref={roadRef}
+        className="absolute left-1/2 -translate-x-1/2 w-[180px] pointer-events-none opacity-0"
         style={{
           backgroundImage: `url(${roadImage})`,
-          backgroundSize: 'contain',
+          backgroundSize: '180px auto',
           backgroundRepeat: 'repeat-y',
-          backgroundPosition: 'top center',
-          top: '280px',
-          height: 'calc(100% - 280px)',
+          backgroundPosition: 'center top',
+          top: '250px',
+          height: 'calc(100% - 250px)',
         }}
       />
 
