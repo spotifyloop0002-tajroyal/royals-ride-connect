@@ -181,12 +181,11 @@ export default function GalleryManagement() {
                   <SelectTrigger id="category">
                     <SelectValue placeholder="Choose a category" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Ride">Ride</SelectItem>
-                    <SelectItem value="Casual Meet">Casual Meet</SelectItem>
-                    <SelectItem value="Short Ride">Short Ride</SelectItem>
-                    <SelectItem value="Event">Event</SelectItem>
-                    <SelectItem value="News">News</SelectItem>
+                  <SelectContent className="z-50 bg-background">
+                    <SelectItem value="Rides">Rides</SelectItem>
+                    <SelectItem value="Events">Events</SelectItem>
+                    <SelectItem value="Meetups">Meetups</SelectItem>
+                    <SelectItem value="Bike Expo">Bike Expo</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
