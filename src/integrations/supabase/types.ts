@@ -243,6 +243,7 @@ export type Database = {
           full_name: string
           id: string
           license_number: string | null
+          member_id: string
           member_since: string | null
           mobile: string
           profile_photo_url: string | null
@@ -263,6 +264,7 @@ export type Database = {
           full_name: string
           id: string
           license_number?: string | null
+          member_id: string
           member_since?: string | null
           mobile: string
           profile_photo_url?: string | null
@@ -283,6 +285,7 @@ export type Database = {
           full_name?: string
           id?: string
           license_number?: string | null
+          member_id?: string
           member_since?: string | null
           mobile?: string
           profile_photo_url?: string | null
@@ -447,6 +450,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      generate_member_id: { Args: never; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
