@@ -16,6 +16,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminLogin from "./pages/admin/AdminLogin";
+import AdminSignup from "./pages/admin/AdminSignup";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import GalleryManagement from "./pages/admin/GalleryManagement";
 import HeroEditor from "./pages/admin/HeroEditor";
@@ -49,6 +50,7 @@ const App = () => (
               }
             />
             <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/signup" element={<AdminSignup />} />
             <Route
               path="/admin"
               element={
