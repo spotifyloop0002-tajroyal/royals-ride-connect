@@ -1,28 +1,56 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 
-const slides = [
-  { id: 1, image: hero1, alt: "Riders on highway" },
-  { id: 2, image: hero2, alt: "Mountain adventure" },
-  { id: 3, image: hero3, alt: "Group at Taj Mahal" },
+// Fallback slides if no images in database
+const fallbackSlides = [
+  { id: "1", image_url: hero1, alt_text: "Riders on highway", is_active: true, sort_order: 1 },
+  { id: "2", image_url: hero2, alt_text: "Mountain adventure", is_active: true, sort_order: 2 },
+  { id: "3", image_url: hero3, alt_text: "Group at Taj Mahal", is_active: true, sort_order: 3 },
 ];
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const { data: heroImages, isLoading } = useQuery({
+    queryKey: ['hero-images'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('hero_images')
+        .select('*')
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true });
+      
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  // Use database images or fallback to static images
+  const slides = (heroImages && heroImages.length > 0) ? heroImages : fallbackSlides;
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+
+  if (isLoading) {
+    return (
+      <div className="relative h-[600px] overflow-hidden rounded-lg flex items-center justify-center bg-muted">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="relative h-[600px] overflow-hidden rounded-lg">
@@ -34,8 +62,8 @@ const HeroSlider = () => {
           }`}
         >
           <img
-            src={slide.image}
-            alt={slide.alt}
+            src={slide.image_url}
+            alt={slide.alt_text || "Hero slide"}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
@@ -61,36 +89,40 @@ const HeroSlider = () => {
         </div>
       </div>
 
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/20 hover:bg-background/40 text-primary-foreground"
-        onClick={prevSlide}
-      >
-        <ChevronLeft size={32} />
-      </Button>
+      {slides.length > 1 && (
+        <>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/20 hover:bg-background/40 text-primary-foreground"
+            onClick={prevSlide}
+          >
+            <ChevronLeft size={32} />
+          </Button>
 
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/20 hover:bg-background/40 text-primary-foreground"
-        onClick={nextSlide}
-      >
-        <ChevronRight size={32} />
-      </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/20 hover:bg-background/40 text-primary-foreground"
+            onClick={nextSlide}
+          >
+            <ChevronRight size={32} />
+          </Button>
 
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentSlide ? "bg-accent w-8" : "bg-background/50"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentSlide ? "bg-accent w-8" : "bg-background/50"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
