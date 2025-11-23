@@ -19,11 +19,10 @@ export default function Leaderboard() {
             badge_id
           )
         `)
-        .order('total_km_ridden', { ascending: false })
-        .limit(50);
+        .order('total_km_ridden', { ascending: false, nullsFirst: false });
       
       if (error) throw error;
-      return data;
+      return data || [];
     },
   });
 
@@ -37,11 +36,13 @@ export default function Leaderboard() {
   // Count badges for each rider
   const ridersWithBadgeCounts = (topRiders || []).map(rider => ({
     ...rider,
-    badgeCount: Array.isArray(rider.user_badges) ? rider.user_badges.length : 0
+    badgeCount: Array.isArray(rider.user_badges) ? rider.user_badges.length : 0,
+    total_km_ridden: rider.total_km_ridden || 0,
+    total_rides_completed: rider.total_rides_completed || 0
   }));
 
-  const sortByKm = [...ridersWithBadgeCounts].sort((a, b) => b.total_km_ridden - a.total_km_ridden);
-  const sortByRides = [...ridersWithBadgeCounts].sort((a, b) => b.total_rides_completed - a.total_rides_completed);
+  const sortByKm = [...ridersWithBadgeCounts].sort((a, b) => (b.total_km_ridden || 0) - (a.total_km_ridden || 0));
+  const sortByRides = [...ridersWithBadgeCounts].sort((a, b) => (b.total_rides_completed || 0) - (a.total_rides_completed || 0));
   const sortByBadges = [...ridersWithBadgeCounts].sort((a, b) => b.badgeCount - a.badgeCount);
 
   const renderLeaderboardCard = (rider: any, index: number, metric: 'km' | 'rides' | 'badges') => {
