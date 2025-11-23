@@ -12,57 +12,43 @@ export const useTimelineAudio = () => {
     try {
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
       
-      // For now, we'll create subtle beep sounds as placeholders
-      // Replace these with actual motorcycle sound files later
-      const sounds = [
-        { frequency: 220, duration: 0.3 }, // Low engine rumble
-        { frequency: 330, duration: 0.25 }, // Mid rev
-        { frequency: 440, duration: 0.2 }, // Higher rev
+      // Load actual motorcycle sound files
+      const soundFiles = [
+        '/sounds/bike-1.mp3',
+        '/sounds/bike-2.mp3',
+        '/sounds/bike-3.mp3',
+        '/sounds/bike-4.mp3',
+        '/sounds/bike-5.mp3',
+        '/sounds/bike-6.mp3',
+        '/sounds/bike-7.mp3',
+        '/sounds/bike-8.mp3',
       ];
 
-      for (let i = 0; i < 8; i++) {
-        const sound = sounds[i % sounds.length];
-        const buffer = await createSynthSound(
-          audioContextRef.current,
-          sound.frequency,
-          sound.duration
-        );
-        soundBuffersRef.current.set(i, buffer);
+      for (let i = 0; i < soundFiles.length; i++) {
+        await loadAudioFile(soundFiles[i], i);
       }
 
       isInitializedRef.current = true;
-      console.log('Timeline audio initialized');
+      console.log('Timeline audio initialized with motorcycle sounds');
     } catch (error) {
       console.error('Error initializing audio:', error);
     }
   }, []);
 
-  // Create a synthetic sound (placeholder for actual motorcycle sounds)
-  const createSynthSound = async (
-    context: AudioContext,
-    frequency: number,
-    duration: number
-  ): Promise<AudioBuffer> => {
-    const sampleRate = context.sampleRate;
-    const length = sampleRate * duration;
-    const buffer = context.createBuffer(1, length, sampleRate);
-    const data = buffer.getChannelData(0);
+  // Load actual audio file
+  const loadAudioFile = useCallback(async (url: string, milestoneIndex: number) => {
+    if (!audioContextRef.current) return;
 
-    // Create a simple engine-like sound with multiple harmonics
-    for (let i = 0; i < length; i++) {
-      const t = i / sampleRate;
-      const envelope = Math.exp(-t * 3); // Decay envelope
-      
-      // Multiple harmonics for richer sound
-      data[i] = envelope * (
-        Math.sin(2 * Math.PI * frequency * t) * 0.4 +
-        Math.sin(2 * Math.PI * frequency * 2 * t) * 0.2 +
-        Math.sin(2 * Math.PI * frequency * 3 * t) * 0.1
-      );
+    try {
+      const response = await fetch(url);
+      const arrayBuffer = await response.arrayBuffer();
+      const audioBuffer = await audioContextRef.current.decodeAudioData(arrayBuffer);
+      soundBuffersRef.current.set(milestoneIndex, audioBuffer);
+      console.log(`Loaded audio for milestone ${milestoneIndex}`);
+    } catch (error) {
+      console.error(`Error loading audio file for milestone ${milestoneIndex}:`, error);
     }
-
-    return buffer;
-  };
+  }, []);
 
   // Play sound for a milestone
   const playMilestoneSound = useCallback((milestoneIndex: number) => {
@@ -90,24 +76,8 @@ export const useTimelineAudio = () => {
     }
   }, []);
 
-  // Load actual audio file (for when you add real motorcycle sounds)
-  const loadAudioFile = useCallback(async (url: string, milestoneIndex: number) => {
-    if (!audioContextRef.current) return;
-
-    try {
-      const response = await fetch(url);
-      const arrayBuffer = await response.arrayBuffer();
-      const audioBuffer = await audioContextRef.current.decodeAudioData(arrayBuffer);
-      soundBuffersRef.current.set(milestoneIndex, audioBuffer);
-      console.log(`Loaded audio for milestone ${milestoneIndex}`);
-    } catch (error) {
-      console.error(`Error loading audio file for milestone ${milestoneIndex}:`, error);
-    }
-  }, []);
-
   return {
     initAudio,
     playMilestoneSound,
-    loadAudioFile,
   };
 };
