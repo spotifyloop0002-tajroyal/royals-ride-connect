@@ -15,14 +15,21 @@ import {
   Layers
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 export default function SupervisorLayout() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { toast } = useToast();
 
-  const handleSignOut = () => {
-    localStorage.removeItem("supervisor_access");
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
     navigate("/supervisor/login");
+    toast({
+      title: "Logged Out",
+      description: "You have been logged out successfully",
+    });
   };
 
   const menuItems = [
