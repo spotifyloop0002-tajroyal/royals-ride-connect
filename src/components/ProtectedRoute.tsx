@@ -14,8 +14,14 @@ export function ProtectedRoute({ children, requireAdmin = false }: ProtectedRout
   useEffect(() => {
     if (!loading) {
       if (!user) {
-        navigate('/auth');
+        // Redirect to appropriate login based on what's being accessed
+        if (requireAdmin) {
+          navigate('/admin/login');
+        } else {
+          navigate('/auth');
+        }
       } else if (requireAdmin && !isAdmin) {
+        // User is logged in but not admin - redirect to member dashboard
         navigate('/dashboard');
       }
     }

@@ -154,14 +154,6 @@ const Dashboard = () => {
                   <CardTitle>Quick Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  {isAdmin && (
-                    <Button variant="outline" className="w-full justify-start" asChild>
-                      <Link to="/admin">
-                        <Shield className="w-4 h-4 mr-2" />
-                        Admin Panel
-                      </Link>
-                    </Button>
-                  )}
                   <Button variant="outline" className="w-full justify-start" asChild>
                     <Link to="/rides">
                       <Calendar className="w-4 h-4 mr-2" />
