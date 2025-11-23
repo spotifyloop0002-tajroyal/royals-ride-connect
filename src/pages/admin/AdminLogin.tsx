@@ -73,15 +73,21 @@ export default function AdminLogin() {
               {isLoading ? "Signing in..." : "Sign In to Admin Panel"}
             </Button>
           </form>
-          <div className="mt-6 pt-6 border-t text-center">
-            <p className="text-xs text-muted-foreground">
-              This portal is restricted to authorized core team members only.
+          <div className="mt-6 pt-6 border-t text-center space-y-2">
+            <p className="text-sm text-muted-foreground">
+              Don't have an admin account?
             </p>
+            <Button
+              variant="link"
+              onClick={() => navigate('/admin/signup')}
+            >
+              Create Admin Account
+            </Button>
             <Button
               variant="link"
               size="sm"
               onClick={() => navigate('/')}
-              className="mt-2"
+              className="block mx-auto text-xs"
             >
               ← Back to Main Site
             </Button>
