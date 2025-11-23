@@ -60,6 +60,7 @@ const milestones: Milestone[] = [
 const RoadTimeline = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
   const roadRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [audioInitialized, setAudioInitialized] = useState(false);
   
@@ -97,6 +98,20 @@ const RoadTimeline = () => {
 
     const milestoneCards = timelineRef.current.querySelectorAll(".milestone-card");
     const dots = timelineRef.current.querySelectorAll(".timeline-dot");
+
+    // Parallax effect for background image
+    if (bgRef.current) {
+      gsap.to(bgRef.current, {
+        y: "20%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: timelineRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+        },
+      });
+    }
 
     // Animate road background fade in
     if (roadRef.current) {
@@ -171,14 +186,18 @@ const RoadTimeline = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-black py-24 overflow-hidden">
-      {/* Background Image - Behind everything */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={journeyBg}
-          alt="Journey Background"
-          className="w-full h-full object-cover opacity-30"
-        />
+    <section ref={timelineRef} className="relative min-h-screen bg-black py-24 overflow-hidden">
+      {/* Background Image with Parallax - Behind everything */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div ref={bgRef} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          <img
+            src={journeyBg}
+            alt="Journey Background"
+            className="w-full h-full object-cover"
+          />
+          {/* Red overlay for theme matching */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-black/40 to-black/60" />
+        </div>
       </div>
 
       {/* Gradient Fade at Top */}
@@ -223,7 +242,7 @@ const RoadTimeline = () => {
       />
 
       {/* Timeline Container */}
-      <div ref={timelineRef} className="relative container mx-auto px-4 max-w-7xl">
+      <div className="relative container mx-auto px-4 max-w-7xl">
         {milestones.map((milestone, index) => {
           const isLeft = index % 2 === 0;
           
