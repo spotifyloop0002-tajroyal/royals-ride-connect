@@ -15,6 +15,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import GalleryManagement from "./pages/admin/GalleryManagement";
 import HeroEditor from "./pages/admin/HeroEditor";
@@ -47,6 +48,7 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
+            <Route path="/admin/login" element={<AdminLogin />} />
             <Route
               path="/admin"
               element={
