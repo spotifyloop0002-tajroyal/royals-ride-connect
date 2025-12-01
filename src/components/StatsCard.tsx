@@ -45,7 +45,7 @@ const StatsCard = ({ icon: Icon, title, value }: StatsCardProps) => {
   return (
     <Card 
       ref={cardRef}
-      className="relative overflow-hidden transition-all duration-300 border-2 border-primary/20 hover:border-primary/50 bg-gradient-to-br from-card via-card to-primary/5"
+      className="relative overflow-hidden transition-all duration-300 border-2 border-primary/20 hover:border-primary/50 bg-gradient-to-br from-card via-card to-primary/5 hover-lift"
       style={{ transformStyle: 'preserve-3d' }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 hover:opacity-100 transition-opacity duration-500" />
@@ -54,7 +54,7 @@ const StatsCard = ({ icon: Icon, title, value }: StatsCardProps) => {
         <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/50">
           <Icon className="w-8 h-8 text-primary-foreground" />
         </div>
-        <div className="text-4xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-2">
+        <div className="text-4xl font-bold text-gradient-gold mb-2 font-cinzel">
           {value}
         </div>
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{title}</div>

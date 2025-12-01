@@ -118,7 +118,7 @@ const HeroSlider = () => {
         <div className="max-w-4xl">
           <h1 
             ref={titleRef}
-            className="text-5xl md:text-7xl font-black mb-4 drop-shadow-2xl text-foreground"
+            className="text-5xl md:text-7xl font-black mb-4 drop-shadow-2xl text-gradient-gold font-cinzel"
             style={{ 
               letterSpacing: '0.05em'
             }}
@@ -133,10 +133,10 @@ const HeroSlider = () => {
           </p>
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center">
             <a href="/membership">
-              <EnergyButton variant="primary">JOIN THE REVOLUTION</EnergyButton>
+              <EnergyButton variant="primary" className="animate-gold-glow">JOIN THE REVOLUTION</EnergyButton>
             </a>
             <a href="/rides">
-              <EnergyButton variant="accent">UPCOMING RIDES</EnergyButton>
+              <EnergyButton variant="accent" className="animate-gold-glow">UPCOMING RIDES</EnergyButton>
             </a>
           </div>
         </div>

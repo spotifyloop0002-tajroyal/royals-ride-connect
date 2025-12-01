@@ -37,9 +37,9 @@ const About = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold mb-8 text-center animate-fade-in">About The Taj Royals</h1>
+          <h1 className="text-5xl font-bold mb-8 text-center animate-fade-in text-gradient-gold font-cinzel">About The Taj Royals</h1>
 
-          <Card className="mb-12 animate-fade-in">
+          <Card className="mb-12 animate-fade-in hover-lift">
             <CardContent className="p-8">
               <h2 className="text-2xl font-bold mb-4">Our Story</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
@@ -58,10 +58,10 @@ const About = () => {
           </Card>
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader>
                 <Target className="w-12 h-12 text-primary mb-2" />
-                <CardTitle>Our Mission</CardTitle>
+                <CardTitle className="text-gradient-gold">Our Mission</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
@@ -71,10 +71,10 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader>
                 <Eye className="w-12 h-12 text-primary mb-2" />
-                <CardTitle>Our Vision</CardTitle>
+                <CardTitle className="text-gradient-gold">Our Vision</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
@@ -85,12 +85,12 @@ const About = () => {
             </Card>
           </div>
 
-          <h2 className="text-3xl font-bold mb-6 text-center">Why Ride With Us?</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center text-gradient-gold font-cinzel">Why Ride With Us?</h2>
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             {highlights.map((item, index) => (
               <Card
                 key={item.title}
-                className="animate-fade-in"
+                className="animate-fade-in hover-lift"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-6">
@@ -102,12 +102,12 @@ const About = () => {
             ))}
           </div>
 
-          <h2 className="text-3xl font-bold mb-6 text-center">Core Team</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center text-gradient-gold font-cinzel">Core Team</h2>
           <div className="grid md:grid-cols-4 gap-6 mb-12">
             {team.map((member, index) => (
               <Card
                 key={member.name}
-                className="text-center animate-fade-in"
+                className="text-center animate-fade-in hover-lift"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-6">

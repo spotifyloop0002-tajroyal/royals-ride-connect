@@ -11,19 +11,19 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="text-2xl font-black bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <h3 className="text-2xl font-black text-gradient-gold font-cinzel">
               THE TAJ ROYALS
             </h3>
             <p className="text-sm font-semibold text-muted-foreground">
               Since 2005 – Agra's First Riders Club
             </p>
-            <p className="text-sm font-bold text-electric">
+            <p className="text-sm font-bold text-primary">
               Ride Together. Live Free.
             </p>
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-lg">Quick Links</h4>
+            <h4 className="font-bold mb-4 text-lg font-cinzel">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link 
@@ -84,7 +84,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-lg">Contact</h4>
+            <h4 className="font-bold mb-4 text-lg font-cinzel">Contact</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="hover:text-primary transition-colors">Phone: +91 93193 31420</li>
               <li>Agra, Uttar Pradesh</li>
@@ -93,7 +93,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-lg">Follow Us</h4>
+            <h4 className="font-bold mb-4 text-lg font-cinzel">Follow Us</h4>
             <div className="flex space-x-4">
               <a 
                 href="https://www.facebook.com/tajroyals.bikergroup/" 

@@ -221,8 +221,8 @@ const RoadTimeline = () => {
       
       {/* Section Title */}
       <div className="container mx-auto px-4 mb-16 max-w-7xl relative z-10">
-        <h2 className="text-5xl md:text-7xl font-black text-left mb-4" style={{ fontFamily: 'Impact, Arial Black, sans-serif' }}>
-          <span className="text-gradient">OUR JOURNEY</span>
+        <h2 className="text-5xl md:text-7xl font-black text-left mb-4 font-cinzel">
+          <span className="text-gradient-gold">OUR JOURNEY</span>
         </h2>
         <p className="text-left text-muted-foreground text-lg">Two decades of adventure on two wheels</p>
       </div>

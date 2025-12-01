@@ -47,7 +47,7 @@ const Gallery = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in">Gallery</h1>
+          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in text-gradient-gold font-cinzel">Gallery</h1>
           <p className="text-center text-muted-foreground mb-12 animate-fade-in">
             Relive the memories from our incredible journeys
           </p>
@@ -61,7 +61,7 @@ const Gallery = () => {
               {albums.map((album, index) => (
                 <Card
                   key={album.id}
-                  className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-fade-in"
+                  className="hover:shadow-xl transition-all duration-300 cursor-pointer animate-fade-in hover-lift"
                   style={{ animationDelay: `${index * 100}ms` }}
                   onClick={() => setSelectedAlbum(album.id)}
                 >
