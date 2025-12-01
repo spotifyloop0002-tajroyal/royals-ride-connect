@@ -71,7 +71,7 @@ const Home = () => {
       <div className="container mx-auto px-4 py-8">
         <section ref={sectionRef} className="mt-16">
           <div className="max-w-4xl mx-auto text-center mb-12 content-block">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 text-gradient">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-gradient-gold font-cinzel">
               WELCOME TO THE TAJ ROYALS
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -89,7 +89,7 @@ const Home = () => {
             {stats.map((stat, index) => (
               <div
                 key={stat.title}
-                className="stat-card"
+                className="stat-card hover-lift"
               >
                 <StatsCard {...stat} />
               </div>

@@ -21,16 +21,16 @@ const Membership = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in">Join The Brotherhood</h1>
+          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in text-gradient-gold font-cinzel">Join The Brotherhood</h1>
           <p className="text-center text-muted-foreground mb-12 animate-fade-in">
             Become a lifetime member of Agra's premier riders club
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader className="text-center">
                 <Award className="w-16 h-16 mx-auto mb-4 text-primary" />
-                <CardTitle className="text-3xl">Lifetime Membership</CardTitle>
+                <CardTitle className="text-3xl text-gradient-gold">Lifetime Membership</CardTitle>
                 <div className="text-5xl font-bold text-primary mt-4">₹999</div>
                 <p className="text-muted-foreground">One-time payment</p>
               </CardHeader>
@@ -46,9 +46,9 @@ const Membership = () => {
               </CardContent>
             </Card>
 
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader>
-                <CardTitle>Membership Registration</CardTitle>
+                <CardTitle className="text-gradient-gold">Membership Registration</CardTitle>
               </CardHeader>
               <CardContent>
                 <form className="space-y-4">
@@ -116,7 +116,7 @@ const Membership = () => {
                     <Input id="photo" type="file" accept="image/*" />
                   </div>
 
-                  <Button variant="gold" className="w-full" size="lg" type="button">
+                  <Button variant="gold" className="w-full animate-gold-glow" size="lg" type="button">
                     Pay ₹999 & Join Now
                   </Button>
 

@@ -59,13 +59,13 @@ const Auth = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-md mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center animate-fade-in">
+          <h1 className="text-4xl font-bold mb-8 text-center animate-fade-in text-gradient-gold font-cinzel">
             Welcome Back, Rider
           </h1>
 
-          <Card className="animate-fade-in">
+          <Card className="animate-fade-in hover-lift">
             <CardHeader>
-              <CardTitle className="text-center">Member Access</CardTitle>
+              <CardTitle className="text-center text-gradient-gold">Member Access</CardTitle>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="login" className="w-full">
@@ -98,7 +98,7 @@ const Auth = () => {
                         required
                       />
                     </div>
-                    <Button variant="gold" type="submit" className="w-full" disabled={isLoading}>
+                    <Button variant="gold" type="submit" className="w-full animate-gold-glow" disabled={isLoading}>
                       {isLoading ? "Logging in..." : "Login"}
                     </Button>
                   </form>
@@ -162,7 +162,7 @@ const Auth = () => {
                         minLength={6}
                       />
                     </div>
-                    <Button variant="gold" type="submit" className="w-full" disabled={isLoading}>
+                    <Button variant="gold" type="submit" className="w-full animate-gold-glow" disabled={isLoading}>
                       {isLoading ? "Creating account..." : "Sign Up"}
                     </Button>
                     <p className="text-xs text-center text-muted-foreground">

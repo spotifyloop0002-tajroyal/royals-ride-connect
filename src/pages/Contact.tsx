@@ -8,16 +8,16 @@ const Contact = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in">Get In Touch</h1>
+          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in text-gradient-gold font-cinzel">Get In Touch</h1>
           <p className="text-center text-muted-foreground mb-12 animate-fade-in">
             Have questions? We'd love to hear from you
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader>
                 <Phone className="w-12 h-12 text-primary mb-2" />
-                <CardTitle>Phone</CardTitle>
+                <CardTitle className="text-gradient-gold">Phone</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
@@ -32,23 +32,23 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader>
                 <MessageCircle className="w-12 h-12 text-primary mb-2" />
-                <CardTitle>WhatsApp Community</CardTitle>
+                <CardTitle className="text-gradient-gold">WhatsApp Community</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
                   Join our active WhatsApp community
                 </p>
-                <Button variant="gold" className="w-full">Join WhatsApp Group</Button>
+                <Button variant="gold" className="w-full animate-gold-glow">Join WhatsApp Group</Button>
               </CardContent>
             </Card>
 
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader>
                 <Mail className="w-12 h-12 text-primary mb-2" />
-                <CardTitle>Email</CardTitle>
+                <CardTitle className="text-gradient-gold">Email</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
@@ -63,10 +63,10 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="animate-fade-in">
+            <Card className="animate-fade-in hover-lift">
               <CardHeader>
                 <MapPin className="w-12 h-12 text-primary mb-2" />
-                <CardTitle>Location</CardTitle>
+                <CardTitle className="text-gradient-gold">Location</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
@@ -80,9 +80,9 @@ const Contact = () => {
             </Card>
           </div>
 
-          <Card className="animate-fade-in">
+          <Card className="animate-fade-in hover-lift">
             <CardHeader>
-              <CardTitle>Find Us</CardTitle>
+              <CardTitle className="text-gradient-gold">Find Us</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="aspect-video w-full rounded-lg overflow-hidden bg-muted">

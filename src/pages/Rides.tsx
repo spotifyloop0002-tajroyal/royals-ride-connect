@@ -102,7 +102,7 @@ const Rides = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in">Ride Calendar</h1>
+          <h1 className="text-5xl font-bold mb-4 text-center animate-fade-in text-gradient-gold font-cinzel">Ride Calendar</h1>
           <p className="text-center text-muted-foreground mb-12 animate-fade-in">
             Join us on our upcoming adventures
           </p>
@@ -116,7 +116,7 @@ const Rides = () => {
               {rides.map((ride, index) => (
                 <Card
                   key={ride.id}
-                  className="hover:shadow-lg transition-all duration-300 animate-fade-in"
+                  className="hover:shadow-lg transition-all duration-300 animate-fade-in hover-lift"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardHeader>
@@ -140,6 +140,7 @@ const Rides = () => {
                               <Button 
                                 size="lg"
                                 variant="gold"
+                                className="animate-gold-glow"
                                 onClick={() => handleRegisterClick(ride)}
                                 disabled={!ride.payment_link}
                               >
@@ -324,6 +325,7 @@ const Rides = () => {
             </Button>
             <Button 
               variant="gold"
+              className="animate-gold-glow"
               onClick={handleConfirmRegistration}
               disabled={registerForRideMutation.isPending}
             >
