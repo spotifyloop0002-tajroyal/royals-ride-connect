@@ -53,13 +53,14 @@ const GoldParticles = () => {
 
       draw() {
         if (!ctx) return;
-        ctx.fillStyle = `rgba(213, 155, 43, ${this.opacity})`;
+        // Gold color: hsl(43 74% 49%) = rgb(217, 166, 33)
+        ctx.fillStyle = `rgba(217, 166, 33, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // Add sparkle effect
-        ctx.fillStyle = `rgba(255, 215, 100, ${this.opacity * 0.5})`;
+        // Add sparkle effect with lighter gold
+        ctx.fillStyle = `rgba(255, 200, 80, ${this.opacity * 0.5})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
         ctx.fill();

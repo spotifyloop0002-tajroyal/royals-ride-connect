@@ -39,8 +39,8 @@ const ThemeToggle = () => {
     >
       {isPremium ? (
         <>
-          <Moon size={18} className="text-[#D59B2B]" />
-          <span className="text-xs font-medium text-[#D59B2B]">Premium</span>
+          <Moon size={18} className="text-gold" />
+          <span className="text-xs font-medium text-gold font-cinzel">Royal</span>
         </>
       ) : (
         <>

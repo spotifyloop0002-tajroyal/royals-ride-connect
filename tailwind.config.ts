@@ -13,12 +13,18 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'cinzel': ['Cinzel', 'serif'],
+        'inter': ['Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        gold: "hsl(var(--gold, 43 74% 49%))",
+        bronze: "hsl(var(--bronze, 25 60% 45%))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -102,6 +108,10 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.5)" },
           "50%": { boxShadow: "0 0 40px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--accent) / 0.5)" }
         },
+        "gold-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(43 74% 49% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(43 74% 49% / 0.6)" }
+        },
         "float": {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" }
@@ -117,6 +127,7 @@ export default {
         "scale-in": "scale-in 0.4s ease-out",
         "shimmer": "shimmer 3s linear infinite",
         "glow": "glow 2s ease-in-out infinite",
+        "gold-glow": "gold-glow 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
       },
     },

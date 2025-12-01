@@ -50,12 +50,13 @@ const CursorTrail = () => {
 
   return (
     <>
-      {/* Main cursor dot */}
+      {/* Main cursor dot - Gold: hsl(43 74% 49%) */}
       <div
         className="cursor-trail-dot"
         style={{
           left: mousePos.x - 2,
           top: mousePos.y - 2,
+          background: 'hsl(43 74% 49%)',
         }}
       />
       
