@@ -248,11 +248,11 @@ export default function TeamManagement() {
                 />
                 {uploading && <p className="text-sm text-muted-foreground">Uploading...</p>}
                 {formData.photo_url && (
-                  <div className="mt-2">
+                  <div className="mt-2 w-32 aspect-[5/4] rounded-lg overflow-hidden">
                     <img
                       src={formData.photo_url}
                       alt="Preview"
-                      className="w-20 h-20 rounded-full object-cover"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                 )}
