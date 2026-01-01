@@ -67,8 +67,13 @@ export default function Leaderboard() {
       ? `${rider.total_rides_completed} rides`
       : `${rider.badgeCount} badges`;
 
+    const isTop3 = index < 3;
+    const rankClasses = isTop3 
+      ? 'border-2 border-primary animate-gold-glow hover-lift' 
+      : 'border border-border';
+
     return (
-      <Card key={rider.id} className={index < 3 ? 'border-primary' : ''}>
+      <Card key={rider.id} className={`${rankClasses} transition-all duration-300`}>
         <CardContent className="p-4">
           <div className="flex items-center gap-4">
             <div className="flex-shrink-0">
@@ -84,7 +89,7 @@ export default function Leaderboard() {
               <p className="text-sm text-muted-foreground">@{rider.username}</p>
             </div>
             <div className="text-right">
-              <p className="font-bold text-lg text-foreground">{value}</p>
+              <p className={`font-bold text-lg ${isTop3 ? 'text-primary' : 'text-foreground'}`}>{value}</p>
               {rider.bike_model && (
                 <p className="text-xs text-muted-foreground truncate max-w-[150px]">{rider.bike_model}</p>
               )}
@@ -134,14 +139,14 @@ export default function Leaderboard() {
             </TabsList>
 
             <TabsContent value="km" className="space-y-4">
-              <Card className="mb-6 bg-gradient-to-r from-primary to-secondary">
+              <Card className="mb-6 bg-gradient-to-r from-primary to-secondary animate-gold-glow">
                 <CardContent className="p-6 text-center">
-                  <Trophy className="w-12 h-12 mx-auto mb-2 text-primary-foreground dark:text-[hsl(43,74%,49%)]" />
-                  <h2 className="text-2xl font-bold text-primary-foreground dark:text-[hsl(43,74%,49%)]">Top Distance Rider</h2>
+                  <Trophy className="w-12 h-12 mx-auto mb-2 text-background" />
+                  <h2 className="text-2xl font-bold text-background font-cinzel">Top Distance Rider</h2>
                   {sortByKm[0] && (
                     <>
-                      <p className="text-xl mt-2 text-primary-foreground dark:text-[hsl(43,74%,49%)]">{sortByKm[0].full_name}</p>
-                      <p className="text-3xl font-bold mt-1 text-primary-foreground dark:text-[hsl(43,74%,49%)]">{sortByKm[0].total_km_ridden.toLocaleString()} km</p>
+                      <p className="text-xl mt-2 text-background">{sortByKm[0].full_name}</p>
+                      <p className="text-3xl font-bold mt-1 text-background">{sortByKm[0].total_km_ridden.toLocaleString()} km</p>
                     </>
                   )}
                 </CardContent>
@@ -150,14 +155,14 @@ export default function Leaderboard() {
             </TabsContent>
 
             <TabsContent value="rides" className="space-y-4">
-              <Card className="mb-6 bg-gradient-to-r from-primary to-secondary">
+              <Card className="mb-6 bg-gradient-to-r from-primary to-secondary animate-gold-glow">
                 <CardContent className="p-6 text-center">
-                  <Trophy className="w-12 h-12 mx-auto mb-2 text-primary-foreground dark:text-[hsl(43,74%,49%)]" />
-                  <h2 className="text-2xl font-bold text-primary-foreground dark:text-[hsl(43,74%,49%)]">Most Active Rider</h2>
+                  <Trophy className="w-12 h-12 mx-auto mb-2 text-background" />
+                  <h2 className="text-2xl font-bold text-background font-cinzel">Most Active Rider</h2>
                   {sortByRides[0] && (
                     <>
-                      <p className="text-xl mt-2 text-primary-foreground dark:text-[hsl(43,74%,49%)]">{sortByRides[0].full_name}</p>
-                      <p className="text-3xl font-bold mt-1 text-primary-foreground dark:text-[hsl(43,74%,49%)]">{sortByRides[0].total_rides_completed} rides</p>
+                      <p className="text-xl mt-2 text-background">{sortByRides[0].full_name}</p>
+                      <p className="text-3xl font-bold mt-1 text-background">{sortByRides[0].total_rides_completed} rides</p>
                     </>
                   )}
                 </CardContent>
@@ -166,14 +171,14 @@ export default function Leaderboard() {
             </TabsContent>
 
             <TabsContent value="badges" className="space-y-4">
-              <Card className="mb-6 bg-gradient-to-r from-primary to-secondary">
+              <Card className="mb-6 bg-gradient-to-r from-primary to-secondary animate-gold-glow">
                 <CardContent className="p-6 text-center">
-                  <Trophy className="w-12 h-12 mx-auto mb-2 text-primary-foreground dark:text-[hsl(43,74%,49%)]" />
-                  <h2 className="text-2xl font-bold text-primary-foreground dark:text-[hsl(43,74%,49%)]">Top Badge Collector</h2>
+                  <Trophy className="w-12 h-12 mx-auto mb-2 text-background" />
+                  <h2 className="text-2xl font-bold text-background font-cinzel">Top Badge Collector</h2>
                   {sortByBadges[0] && (
                     <>
-                      <p className="text-xl mt-2 text-primary-foreground dark:text-[hsl(43,74%,49%)]">{sortByBadges[0].full_name}</p>
-                      <p className="text-3xl font-bold mt-1 text-primary-foreground dark:text-[hsl(43,74%,49%)]">{sortByBadges[0].badgeCount} badges</p>
+                      <p className="text-xl mt-2 text-background">{sortByBadges[0].full_name}</p>
+                      <p className="text-3xl font-bold mt-1 text-background">{sortByBadges[0].badgeCount} badges</p>
                     </>
                   )}
                 </CardContent>
